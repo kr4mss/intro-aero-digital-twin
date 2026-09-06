@@ -144,7 +144,22 @@ Define all three cases before implementation. Include exact inputs, expected out
 Use your Section 8 reference calculation.
 
 ```text
-[COMPLETE]
+Inputs:
+cm0 = 0.04
+cmAlphaPerRad = -0.8
+angleOfAttackDeg = 2.86
+disturbanceAlphaDeg = 2.00
+
+Expected outputs:
+Cm(alpha) = 0.00006687
+alpha_trim_deg = 2.86478898
+delta_Cm = -0.00279253
+selected condition = not trimmed
+disturbance tendency = restoring
+
+Tolerances:
+Absolute tolerance of 1e-6 for pitching-moment coefficient values (Cm(alpha) and delta_Cm).
+Absolute tolerance of 1e-4 deg for angle calculations (alpha_trim_deg).
 ```
 
 ### 9.2 Behavioral case
@@ -152,7 +167,10 @@ Use your Section 8 reference calculation.
 Change one input and state the exact trend or sign that must result.
 
 ```text
-[COMPLETE]
+Change input: Double disturbanceAlphaDeg from 2.00 deg to 4.00 deg while holding cm0 = 0.04, cmAlphaPerRad = -0.8, and angleOfAttackDeg = 2.86 deg fixed.
+
+Expected trend:
+The disturbance pitch response delta_Cm must double in magnitude from -0.00279253 to -0.00558505 while maintaining its negative sign and restoring disturbance tendency. The steady-state values Cm(alpha) and alpha_trim_deg must remain unchanged.
 ```
 
 ### 9.3 Boundary or sanity case
@@ -160,7 +178,12 @@ Change one input and state the exact trend or sign that must result.
 Use an informative boundary such as zero slope, zero disturbance, or the trim condition. State the exact behavior expected and why division by zero or a false physical claim must not occur.
 
 ```text
-[COMPLETE]
+Boundary condition: Set pitching-moment slope cmAlphaPerRad = 0.0 with cm0 = 0.04, angleOfAttackDeg = 2.86 deg, and disturbanceAlphaDeg = 2.00 deg.
+
+Expected behavior:
+1. alpha_trim_deg must return "not available" rather than performing division by zero (-Cm0 / Cm_alpha).
+2. delta_Cm must evaluate to exactly 0.0, classified as a neutral disturbance tendency.
+3. Cm(alpha) must equal cm0 (0.04), correctly evaluating as not trimmed without triggering numeric exceptions or division by zero errors.
 ```
 
 ## 10. Feature Requirements
@@ -196,7 +219,7 @@ Do not modify any existing file.
 In one or two sentences, state what decision the completed feature will support and what it cannot establish.
 
 ```text
-[COMPLETE]
+This feature supports deciding whether a target aircraft configuration is trimmed at a selected angleOfAttackDeg and whether a small disturbanceAlphaDeg creates a restoring pitching moment. It cannot establish full dynamic flight response, damping, control motion, large angle-of-attack behavior, or real-world handling qualities.
 ```
 
 ---
