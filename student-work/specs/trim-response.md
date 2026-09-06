@@ -100,7 +100,7 @@ Also make the calculated values available through the provided `stability.pitch.
 Before asking ChatGPT for code, complete each prediction in your own words.
 
 1. If `Cm_alpha < 0` and the angle-of-attack disturbance is positive, `delta_Cm` should be negative because Cm_alpha is negative and it creates a restoring tendency.
-2. If `Cm_alpha > 0` and the angle-of-attack disturbance is positive, the response should be positive because `Cm_alpha is negative and it creates a destablizing tendency.
+2. If `Cm_alpha > 0` and the angle-of-attack disturbance is positive, the response should be positive because `Cm_alpha is positive and it creates a destablizing tendency.
 3. If `Cm_alpha = 0`, changing angle of attack should results in no change in Cm.
 4. If `Cm0` is fixed and the magnitude of a nonzero `Cm_alpha` increases, the trim angle magnitude should decrease.
 5. Doubling `disturbanceAlphaDeg` while holding `Cm_alpha` fixed should double the magnitude of delta_Cm.
@@ -128,7 +128,7 @@ alpha_trim_rad = (-0.04) / (-0.8) = 0.05
 alpha_trim_deg = 0.05 * 180 / pi = 2.8647889757 deg
 
 Disturbance response:
-delta_Cm = (-0.08) * (0.0349065850) = 0.0027925268
+delta_Cm = (-0.8) * (0.0349065850) = -0.0027925268
 
 Expected classifications:
 selected condition = not trimmed
