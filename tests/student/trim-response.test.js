@@ -19,7 +19,7 @@ describe("trim-response physics", () => {
 
     expect(result.cm).toBeCloseTo(0.00006687, 6);
     expect(result.trimAngleDeg).toBeCloseTo(2.86478898, 4);
-    expect(result.deltaCm).toBeCloseTo(-0.00279253, 6);
+    expect(result.deltaCm).toBeCloseTo(-0.02792527, 6);
     expect(result.trimmed).toBe(false);
     expect(result.disturbanceTendency).toBe("restoring");
   });
@@ -39,7 +39,7 @@ describe("trim-response physics", () => {
       disturbanceAlphaDeg: 4.0,
     });
 
-    expect(doubled.deltaCm).toBeCloseTo(-0.00558505, 6);
+    expect(doubled.deltaCm).toBeCloseTo(-0.05585054, 6);
     expect(doubled.deltaCm).toBeCloseTo(baseline.deltaCm * 2, 6);
     expect(doubled.deltaCm).toBeLessThan(0);
     expect(doubled.disturbanceTendency).toBe("restoring");
@@ -83,7 +83,7 @@ describe("trim-response physics", () => {
       4,
     );
     expect(calculateDeltaCm(-0.8, 2.0)).toBeCloseTo(
-      -0.00279253,
+      -0.02792527,
       6,
     );
   });
